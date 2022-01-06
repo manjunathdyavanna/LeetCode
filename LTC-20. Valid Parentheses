@@ -1,0 +1,22 @@
+public boolean isValid(String s) {
+        int l = s.length();
+        if (l == 0)
+            return true;
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < l; i++) {
+            Character ch = s.charAt(i);
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+                continue;
+            }
+            if(stack.isEmpty())
+                return false;
+            Character topCh = stack.peek();
+            if ((topCh == '(' && ch == ')') || (topCh == '{' && ch == '}') || (topCh == '[' && ch == ']')) {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
