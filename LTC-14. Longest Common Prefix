@@ -1,0 +1,24 @@
+public String longestCommonPrefix(String[] strs) {
+        String result = "";
+        int i = 0;
+        int l = strs.length;
+        if (l == 0)
+            return "";
+        char ch;
+        boolean isNotPrefix = false;
+        while (i < strs[0].length()) {
+            ch = strs[0].charAt(i);
+            for (int j=0;j<l;j++) {
+                String str = strs[j];
+                if (str.length() <= i || str.charAt(i) != ch) {
+                    isNotPrefix = true;
+                    break;
+                }
+            }
+            if(isNotPrefix)
+                break;
+            result += ch;
+            i++;
+        }
+        return result;
+    }
