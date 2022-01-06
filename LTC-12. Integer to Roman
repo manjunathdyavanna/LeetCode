@@ -1,0 +1,80 @@
+public String intToRoman(int num) {
+        String result = "";
+        int i = 1;
+        int j = 1;
+        while(num>0){
+            int reminder = num%10;
+            num/=10;
+            if(reminder!=0)
+            result =  intInRoman(j*reminder) + result;
+            j *=10;
+        }
+        return result;
+    }
+    
+    private String intInRoman(int i){
+        String s = "";
+        switch (i){
+            case 1 : s = "I";
+                break;
+            case 2 : s = "II";
+                break;
+            case 3 : s = "III";
+                break;
+            case 4 : s = "IV";
+                break;
+            case 5 : s = "V";
+                break;
+            case 6 : s = "VI";
+                break;
+            case 7 : s = "VII";
+                break;
+            case 8 : s = "VIII";
+                break;
+            case 9 : s = "IX";
+                break;
+            case 10 : s = "X";
+                break;
+            case 20 : s = "XX";
+                break;
+            case 30 : s = "XXX";
+                break;
+            case 40 : s = "XL";
+                break;
+            case 50 : s = "L";
+                break;
+            case 60 : s = "LX";
+                break;
+            case 70 : s = "LXX";
+                break;
+            case 80 : s = "LXXX";
+                break;
+            case 90 : s = "XC";
+                break;
+            case 100 : s = "C";
+                break;
+            case 200 : s = "CC";
+                break;
+            case 300 : s = "CCC";
+                break;
+            case 400 : s = "CD";
+                break;
+            case 500 : s = "D";
+                break;
+            case 600 : s = "DC";
+                break;
+            case 700 : s = "DCC";
+                break;
+            case 800 : s = "DCCC";
+                break;
+            case 900 : s = "CM";
+                break;
+            case 1000 : s = "M";
+                break;
+            case 2000 : s = "MM";
+                break;
+            case 3000 : s = "MMM";
+                break;
+        }
+        return s;
+    }
