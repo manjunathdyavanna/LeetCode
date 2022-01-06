@@ -1,0 +1,39 @@
+public int romanToInt(String s) {
+        int l = s.length();
+        int num = getRomaInInt(s.charAt(l-1));
+        int result = num;
+        int prevnum = num;
+        for(int i = l-2; i>=0 ;i--){
+            num = getRomaInInt(s.charAt(i));
+            if(num<prevnum)
+                result -= num;
+            else
+                result += num;
+            prevnum = num;
+        }
+        return result;
+    }
+
+
+
+    private int getRomaInInt(char ch){
+        int val = 0;
+        switch (ch){
+            case 'I' : val = 1;
+                break;
+            case 'V' : val = 5;
+                break;
+            case 'X' : val = 10;
+                break;
+            case 'L' : val = 50;
+                break;
+            case 'C' : val = 100;
+                break;
+            case 'D' : val = 500;
+                break;
+            case 'M' : val = 1000;
+                break;
+
+        }
+        return val ;
+    }
