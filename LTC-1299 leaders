@@ -1,0 +1,14 @@
+public int[] replaceElements(int[] arr) {
+        int leader = arr[arr.length-1];
+        int[] leaders = new int[arr.length];
+        leaders[arr.length-1] = -1;
+        for(int i=arr.length-2; i>=0; i--){
+            if(arr[i]>leader){
+                leaders[i]=leader;
+                leader=arr[i];
+            } else {
+                leaders[i]=leader;
+            }
+        }
+        return leaders;
+    }
