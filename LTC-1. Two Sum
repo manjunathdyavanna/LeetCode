@@ -1,0 +1,27 @@
+List<Integer> arrList = new ArrayList<>(nums.length);
+	    for(Integer val : nums)
+	        arrList.add(val);
+        int[] result = {-1,-1};
+        
+        for(int i=0;i<nums.length;i++){
+            if(i < nums.length-1 && nums[i]+nums[i+1] == target){
+                result[0] = i;
+                result[1] = i+1;
+                break;
+            }
+            if(arrList.contains((Integer) target-nums[i])){
+                int nextInd = arrList.indexOf((Integer) target-nums[i]);
+                if(nextInd!=i){
+                    result[0] = i;
+                    result[1] = nextInd;
+                    break;
+                }
+            }
+        }
+        if(target==0 && result[0]==-1 ){
+            result[0] = arrList.indexOf(0);
+            result[1] = arrList.lastIndexOf(0);
+            return result;
+        }
+        return result;
+    }
