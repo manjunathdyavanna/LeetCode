@@ -1,0 +1,25 @@
+public int myAtoi(String s) {
+        s = s.trim();
+        int index = 1 ;
+        if(s.isEmpty())
+            return 0;
+        int length = s.length();
+        char fch = s.charAt(0);
+        if(!(fch == '-' || fch == '+') && !Character.isDigit(fch))
+            return 0;
+        while (index< length){
+            if(!Character.isDigit(s.charAt(index)))
+                break;
+            index++;
+        }
+        try{
+            if(index == 1 && !Character.isDigit(fch))
+                return 0;
+            return  Integer.parseInt(s.substring(0,index));
+        }catch (NumberFormatException e){
+            if(fch == '-')
+                return -2147483648;
+            return 2147483647;
+        }
+        
+    }
