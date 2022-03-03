@@ -1,0 +1,21 @@
+//45% faster than others and 50% less space :: SC: O(N) :: TC: O(N)
+class Solution {
+    public String convert(String s, int numRows) {
+        char[] str =  s.toCharArray();                  // for faster char access
+        StringBuilder[] sb = new StringBuilder[numRows]; //create string builder for each row
+        int i = 0;
+        for(i=0; i<numRows; i++)
+           sb[i] = new StringBuilder("");                            //init all rows with empty string
+        i = 0;
+        while(i<s.length()){                                         
+            for(int j=0; j<numRows && i<s.length(); j++,i++)        
+                sb[j].append(str[i]);                               //append each chars in corresponding rows from top to bottom
+            for(int j=numRows-2; j>0 && i<s.length(); j--, i++)      
+                sb[j].append(str[i]);                               //append each char to respective rows from bottom to top
+        }
+        
+        for(i=1; i<numRows; i++)      
+            sb[0].append(sb[i]);            // combine all the rows
+        return sb[0].toString();
+    }
+}
