@@ -15,7 +15,7 @@ class Solution {
         }
         
         for(i=1; i<numRows; i++)      
-            sb[0].append(sb[i]);            // combine all the rows
+            sb[0].append(sb[i]);            // combine all the row
         return sb[0].toString();
     }
 }
