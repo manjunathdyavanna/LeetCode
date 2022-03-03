@@ -1,0 +1,7 @@
+class Solution {
+    public int arrangeCoins(int n) {
+        if(n<3)
+            return 1;
+        return (int) (Math.sqrt(2 * (long) n + 0.25) - 0.5);    // we know that (N*(N+1))/2 <= n so finding +ve root is sufficient
+    }
+}
