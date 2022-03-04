@@ -1,0 +1,12 @@
+//Runtime: 9 ms, faster than 81.19% of Java online submissions for Contains Duplicate.
+//Memory Usage: 68.8 MB, less than 58.91% of Java online submissions for Contains Duplicate.
+
+public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();   //to store each element
+        for(int i=0; i<nums.length; i++){
+            if(set.contains(nums[i]))             //if ele is present means its appearing more than once
+               return true;
+            else set.add(nums[i]);
+        }
+        return false;
+    }
