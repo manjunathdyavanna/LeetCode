@@ -1,0 +1,15 @@
+//Runtime: 48 ms, faster than 34.36% of Java online submissions for Contains Duplicate II.
+//Memory Usage: 93.9 MB, less than 49.66% of Java online submissions for Contains Duplicate II.
+
+//TC:O(N) :: SC:O(N)
+public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();    //to store elment and its index
+        for(int i=0; i<nums.length; i++){
+            if(map.containsKey(nums[i])){
+                if(i-map.get(nums[i])<=k)
+                    return true;
+            } map.put(nums[i],i);               //because we need to check lesser or equal to k so no need to store older index
+        }
+        return false;
+        
+    }
