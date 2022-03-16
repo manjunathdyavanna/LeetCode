@@ -1,0 +1,37 @@
+/*Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Flips to Make a OR b Equal to c.
+ *Memory Usage: 40.7 MB, less than 50.33% of Java online submissions for Minimum Flips to Make a OR b Equal to c.
+ *Given 3 positives numbers a, b and c. Return the minimum flips required in some bits of a 
+ *and b to make ( a OR b == c ). (bitwise OR operation).
+ *Flip operation consists of change any single bit 1 to 0 or change the bit 0 to 1 in their binary representation.
+ */
+ 
+class Solution {
+    public int minFlips(int a, int b, int c) { 
+        int maxFlip = 0;
+        while(c != 0){                      // traverse each bits in a
+            if((c&1) == 1){
+                if((a&1)==0 && (b&1)==0)     // flip anyone will make cBit 1
+                    maxFlip += 1;
+            }else{
+                if((a&1)==1 && (b&1)==1)      // need to flip both to make c bit 0
+                    maxFlip += 2;
+                else if((a&1)==1 || (b&1)==1) //flip any one which is 1
+                    maxFlip += 1;
+            }
+            a = a>>1;
+            b = b>>1;
+            c = c>>1;
+        }
+        maxFlip += countSetBits(a) ;    // flip remaining set bits in a
+        maxFlip += countSetBits(b) ;   // flip remaining set bits in b
+        return maxFlip;
+    }
+    public int countSetBits(int n){
+        int cnt = 0;
+        while(n!=0){
+            cnt++;
+            n = n&(n-1);
+        }
+        return cnt;
+    }  
+}
