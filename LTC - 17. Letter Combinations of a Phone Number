@@ -1,0 +1,47 @@
+/*
+ *Question::
+ *Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 
+ *Return the answer in any order.
+ *Acceptance::
+ *Runtime: 1 ms, faster than 91.56% of Java online submissions for Letter Combinations of a Phone Number.
+ *Memory Usage: 42.5 MB, less than 40.09% of Java online submissions for Letter Combinations of a Phone Number
+ */
+
+//TC:O(N) SC:O(N)
+
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        if(null==digits || digits.isEmpty())
+            return new ArrayList<String>();
+        //preparing dectionary for number to starting alpabets
+        List<Character> alps = new ArrayList<>();                     
+        alps.add('a'); alps.add('d'); alps.add('g'); alps.add('j'); 
+        alps.add('m'); alps.add('p'); alps.add('t'); alps.add('w'); 
+        
+        List<StringBuilder> resSb = new ArrayList<StringBuilder>();
+        resSb.add(new StringBuilder(""));
+        
+        //appending each chars to existing strings in list
+        for(int i=0; i<digits.length(); i++){
+            int  ch =  digits.charAt(i)-'0';
+            resSb = append(resSb,alps.get(ch-2));
+        }
+        
+        List<String> res = new ArrayList<String>();
+        for(StringBuilder sb : resSb)
+            res.add(sb.toString());
+        return res;
+    }
+    private List<StringBuilder> append(List<StringBuilder> resSb, char ch){
+        int n = (ch=='p'||ch=='w') ? 4:3;
+        List<StringBuilder> resSb1 =  new ArrayList<StringBuilder>();
+        for(StringBuilder sb : resSb){
+            for(int i=0; i<n; i++){
+                StringBuilder tmp = new StringBuilder(sb);
+                tmp.append((char)(ch+i));                           //adding i results in next char
+                resSb1.add(tmp);
+            }
+        }
+        return resSb1;
+    }
+}
