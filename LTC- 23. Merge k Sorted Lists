@@ -1,0 +1,43 @@
+/*
+*TC = O(N) SC = O(1)
+*Runtime: 296 ms, faster than 9.00% of Java online submissions for Merge k Sorted Lists.
+*Memory Usage: 47 MB, less than 55.16% of Java online submissions for Merge k Sorted Lists.
+*You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+*/
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length==1)
+            return lists[0];
+        if(lists.length==0)
+            return null;
+        ListNode result = new ListNode();   //to store result head
+        ListNode resCurr = result;          //to travers
+        while(true){
+            int i=0;
+            int min = Integer.MIN_VALUE;
+            int minIndex = 0;
+            ListNode minNode = null;
+            while(i!=lists.length && lists[i]==null){ // to check if any linkedList are present
+                i++;
+            }
+            if(i==lists.length)
+                break;
+            min = lists[i].val;         // if present assign a value to minmun
+            minIndex = i;
+            for(i=0; i<lists.length; i++){
+                ListNode temp = lists[i];
+                if(temp!=null){
+                    if(min>temp.val){       //update minimum and minmum index
+                        min = temp.val;
+                        minIndex = i;
+                    }
+                }                
+            }
+            resCurr.next = lists[minIndex]; //dd minimum to result
+            resCurr = resCurr.next;
+            if(lists[minIndex]!=null)
+            lists[minIndex] = lists[minIndex].next;
+        }
+        return result.next;        
+    }
+}
