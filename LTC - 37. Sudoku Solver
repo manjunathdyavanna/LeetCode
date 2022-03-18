@@ -1,0 +1,45 @@
+/*Recursive approch with trial and error method
+ *Runtime: 17 ms, faster than 48.86% of Java online submissions for Sudoku Solver.
+ *Memory Usage: 41.9 MB, less than 33.21% of Java online submissions for Sudoku Solver.
+ *
+ *Write a program to solve a Sudoku puzzle by filling the empty cells
+ *
+ */
+class Solution {
+    public void solveSudoku(char[][] board) {
+        solve(board);
+    }
+    public boolean solve(char[][] board){
+        for(int i=0; i<9; i++){
+            for(int j=0; j<9; j++){
+                if(board[i][j]=='.'){                   //to fill only empty cell
+                    for(char ch='1'; ch<='9'; ch++){    // try to fill with all valid inputs
+                        if(isValidBoard(board,i,j,ch)){ // check the char is valid to fill in this place
+                            board[i][j] = ch;
+                            if(solve(board)==true)      // check if sudoku is solvable with this char
+                                return true;
+                            else board[i][j]='.';       // if not empty this place and check for next possible input
+                            }
+                        }
+                    return false;                       // return false is none of the chars are possible
+                    }
+                }
+            }
+        return true;                                     // will get executed only when sudoku is solved
+        }
+        
+    
+    public boolean isValidBoard(char[][] board, int row, int col, char ch) {  //validate the char to fill
+        int boxRowStart = (row/3)*3;       
+        int boxColStart = (col/3)*3;
+       for(int i=0; i<9; i++){                    
+           if(board[row][i] == ch)                      
+               return false;
+           if(board[i][col] == ch)
+               return false;
+           if( board[boxRowStart+(i/3)][boxColStart+(i%3)] == ch)   // to traverse through box
+                   return false; 
+       }
+        return true;
+    }
+}
