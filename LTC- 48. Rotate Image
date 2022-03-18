@@ -1,0 +1,33 @@
+/* TC : O(N*N) :: SC : O(1)
+ *Runtime: 0 ms, faster than 100.00% of Java online submissions for Rotate Image.
+ *Memory Usage: 41 MB, less than 72.39% of Java online submissions for Rotate Image.
+ *
+ *You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+ */
+class Solution {
+    public void rotate(int[][] matrix) {
+        //revers the rows (swap)
+        for(int i=0; i<matrix.length; i++){    
+            int colStart = 0;
+            int colEnd = matrix.length-1;
+            while(colStart<=colEnd){
+                swap(matrix, colStart, i, colEnd, i);
+                colStart++;
+                colEnd--;
+            }
+        }
+        //swap all diagonal elements
+        for(int row=0; row<matrix.length; row++){
+            for(int col=0; col<matrix.length; col++){
+                if(row==col)
+                    break;
+                swap(matrix, row, col, col, row);
+            }
+        }
+    }
+    private void swap(int[][] matrix, int aRow, int aCol, int bRow, int bCol){
+        int temp = matrix[aRow][aCol];
+        matrix[aRow][aCol] = matrix[bRow][bCol];
+        matrix[bRow][bCol] = temp;
+    }
+}
