@@ -1,0 +1,44 @@
+/*
+ *Runtime: 1 ms, faster than 100.00% of Java online submissions for Squares of a Sorted Array.
+ *Memory Usage: 43.8 MB, less than 91.84% of Java online submissions for Squares of a Sorted Array.
+ *Given an integer array nums sorted in non-decreasing order, return an array of the squares of 
+ *each number sorted in non-decreasing order.
+ */
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int i=0;
+        for(;i<nums.length; i++){  //convert all negetive to positive in in input array
+            if(nums[i]>=0)
+                break;
+            nums[i] = -1*nums[i];  
+        }
+        return  mergeSort(nums,i);  //merg sort and get squared array
+    }
+    public int[] mergeSort(int[] nums,int i){
+        int j=i-1;                                //i-1 will have least value in which was -ve
+        int k=0;
+        int[] res = new int[nums.length];
+        while(j>=0 && i<nums.length){
+            if(nums[i]<nums[j]){
+                res[k++] = nums[i]*nums[i++];
+            } else
+            if(nums[i]>nums[j]){
+                res[k++] = nums[j]*nums[j--];
+            }   else             
+            if(nums[i]==nums[j]){
+                res[k++] = nums[i]*nums[i++];
+                res[k++]=nums[j]*nums[j--];
+            } 
+        }
+        while(j>=0){
+            res[k++] = nums[j]*nums[j--];
+        }
+            
+        while(i<nums.length){
+            res[k++] = nums[i]*nums[i++];
+        }
+        
+        return res;
+    } 
+}
